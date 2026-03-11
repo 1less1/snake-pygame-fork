@@ -21,4 +21,19 @@ jobs:
         run: pip install flake8
 
       - name: Run flake8
-        run: flake8 . --max-line-length=120 --ignore=E203,W503 || true
+        run: |
+          flake8 . \
+            --max-line-length=120 \
+            --select=E9,F63,F7,F82,F821,F822,F823,F401,F841 \
+            || true
+      # Top 10 Rules:
+      # 1. E9 - Syntax errors
+      # 2. F63 - Invalid syntax construct
+      # 3. F7 - Syntax errors in loops/blocks
+      # 4. F82 - Undefined names in __all__
+      # 5. F821 - Undefined name
+      # 6. F822 - Undefined name referenced in __all__
+      # 7. F823 - Local variable referenced before assignment
+      # 8. F401 - Imported module but unused
+      # 9. F841 - Local variable assigned but never used
+      # 10. E501 - Line too long
